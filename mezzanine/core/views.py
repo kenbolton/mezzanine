@@ -62,6 +62,18 @@ def set_site(request):
     return redirect(next)
 
 
+def drafts_toggle(request):
+    if request.session.get('show_drafts', True):
+        request.session["show_drafts"] = False
+    else:
+        request.session["show_drafts"] = True
+    if request.GET.get("next") is u'':
+        next = '/'
+    else:
+        next = "/" + request.GET.get("next")
+    return redirect(next)
+
+
 def direct_to_template(request, template, extra_context=None, **kwargs):
     """
     Replacement for Django's ``direct_to_template`` that uses

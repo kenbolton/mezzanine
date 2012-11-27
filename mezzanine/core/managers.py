@@ -7,6 +7,7 @@ from django.db.models.query import QuerySet
 from django.contrib.sites.managers import CurrentSiteManager as DjangoCSM
 
 from mezzanine.conf import settings
+from mezzanine.core.request import current_request
 from mezzanine.utils.sites import current_site_id
 from mezzanine.utils.timezone import now
 
@@ -24,7 +25,9 @@ class PublishedManager(Manager):
         current date when specified.
         """
         from mezzanine.core.models import CONTENT_STATUS_PUBLISHED
-        if for_user is not None and for_user.is_staff:
+        print self
+        if for_user is not None and for_user.is_staff and \
+                current_request().session["show_drafts"]:
             return self.all()
         return self.filter(
             Q(publish_date__lte=now()) | Q(publish_date__isnull=True),

@@ -21,4 +21,5 @@ urlpatterns += patterns("mezzanine.core.views",
     url("^set_site/$", "set_site", name="set_site"),
     url("^set_device/(?P<device>.*)/$", "set_device", name="set_device"),
     url("^asset_proxy/$", "static_proxy", name="static_proxy"),
+    url("^drafts_toggle/$", "drafts_toggle", name="drafts_toggle"),
 )

@@ -8,6 +8,10 @@
     {% else %}
     <a href="{% url "admin:index" %}">{% trans "Admin" %}</a>
     {% endif %}
+    <a id="draft-toggle" href="{% url "drafts_toggle" %}?next={{ page.slug }}">
+      {% if request.session.show_drafts %}{% trans "Hide" %}
+      {% else %}
+      {% trans "Show" %}{% endif %} {% trans "Drafts" %}</a>
     <a id="editable-toolbar-logout" href="#">{% trans "Log out" %}</a>
 </form>
 
