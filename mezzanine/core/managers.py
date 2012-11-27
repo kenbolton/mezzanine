@@ -25,7 +25,6 @@ class PublishedManager(Manager):
         current date when specified.
         """
         from mezzanine.core.models import CONTENT_STATUS_PUBLISHED
-        print self
         if for_user is not None and for_user.is_staff and \
                 current_request().session["show_drafts"]:
             return self.all()
